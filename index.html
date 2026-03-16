@@ -366,7 +366,7 @@
 
 <div class="header">
   <h1>NCAA Tournament 2026 — Bracket Optimizer</h1>
-  <div class="sub">500K Simulations | Sports Reference + Polymarket + Historical Calibration | Selection Sunday v1</div>
+  <div class="sub">500K Simulations | Sports Reference + Polymarket + Historical Calibration | Updated March 16, 2026</div>
 </div>
 
 <div class="methodology">
@@ -420,15 +420,18 @@
     </div>
 
     <div class="method-section">
-      <h4>Key Model Edges vs. Public Consensus</h4>
+      <h4>Key Model Edges vs. Market &amp; Public</h4>
+      <p style="margin-bottom:8px;">Sportsbook odds as of March 16 (ESPN/DraftKings), converted to implied probability with ~28% overround removed. Public pick % from ESPN Tournament Challenge.</p>
       <table class="edge-table">
-        <tr><th>Team</th><th>Model %</th><th>Public %</th><th>Edge</th><th>Implication</th></tr>
-        <tr><td>Duke</td><td class="num">30.5%</td><td class="num">33%</td><td class="num neg">-2.5%</td><td>Fairly priced — still best EV pick</td></tr>
-        <tr><td>Michigan</td><td class="num">27.8%</td><td class="num">8%</td><td class="num pos">+19.8%</td><td>Massively underowned — high leverage</td></tr>
-        <tr><td>Houston</td><td class="num">12.1%</td><td class="num">18%</td><td class="num neg">-5.9%</td><td>Overowned — avoid as champion</td></tr>
-        <tr><td>Arizona</td><td class="num">8.7%</td><td class="num">11%</td><td class="num neg">-2.3%</td><td>Slightly overpriced</td></tr>
-        <tr><td>Florida</td><td class="num">6.2%</td><td class="num">9%</td><td class="num neg">-2.8%</td><td>Good team, bad bracket path</td></tr>
-        <tr><td>Iowa State</td><td class="num">4.8%</td><td class="num">2%</td><td class="num pos">+2.8%</td><td>Underowned dark horse</td></tr>
+        <tr><th>Team</th><th>Seed</th><th>Model %</th><th>Market %</th><th>Public Pick %</th><th>Model vs. Public</th><th>Implication</th></tr>
+        <tr><td>Duke</td><td class="num">1 (East)</td><td class="num">30.5%</td><td class="num">25.0%</td><td class="num">33%</td><td class="num neg">-2.5%</td><td>Overowned — but still highest EV</td></tr>
+        <tr><td>Michigan</td><td class="num">1 (MW)</td><td class="num">27.8%</td><td class="num">22.2%</td><td class="num">8%</td><td class="num pos">+19.8%</td><td>Massively underowned — 3.5x leverage</td></tr>
+        <tr><td>Arizona</td><td class="num">1 (West)</td><td class="num">8.7%</td><td class="num">20.0%</td><td class="num">11%</td><td class="num neg">-2.3%</td><td>Market loves them more than model does</td></tr>
+        <tr><td>Florida</td><td class="num">1 (South)</td><td class="num">6.2%</td><td class="num">12.5%</td><td class="num">9%</td><td class="num neg">-2.8%</td><td>Defending champs but tough path through Houston</td></tr>
+        <tr><td>Houston</td><td class="num">2 (South)</td><td class="num">12.1%</td><td class="num">9.1%</td><td class="num">18%</td><td class="num neg">-5.9%</td><td>Most overowned team — public bias toward name</td></tr>
+        <tr><td>Iowa State</td><td class="num">2 (MW)</td><td class="num">4.8%</td><td class="num">4.3%</td><td class="num">2%</td><td class="num pos">+2.8%</td><td>Underowned dark horse — model agrees with market</td></tr>
+        <tr><td>Illinois</td><td class="num">3 (South)</td><td class="num">5.4%</td><td class="num">5.0%</td><td class="num">3%</td><td class="num pos">+2.4%</td><td>Bracket A Final Four pick — good value</td></tr>
+        <tr><td>Purdue</td><td class="num">2 (West)</td><td class="num">3.2%</td><td class="num">2.8%</td><td class="num">4%</td><td class="num neg">-0.8%</td><td>Bracket B Final Four — slight contrarian value</td></tr>
       </table>
     </div>
 
