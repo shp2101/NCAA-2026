@@ -29,7 +29,7 @@
 
   Final Four: Duke, Illinois, Arizona, Michigan
   Champion: Duke
-  Expected Points: 1114.6
+  Expected Points: 1113.6
 
 
 ============================================================
@@ -38,8 +38,8 @@
 
   --- East Region ---
     R64: Duke, Ohio State, St. John's, Kansas, Louisville, Michigan State, UCLA, UConn
-    R32: Duke, St. John's, Michigan State, UConn
-    S16: Duke, Michigan State
+    R32: Duke, St. John's, Louisville, UConn
+    S16: Duke, Louisville
     E8: Duke
 
   --- South Region ---
@@ -62,5 +62,5 @@
 
   Final Four: Duke, Houston, Purdue, Michigan
   Champion: Michigan
-  Expected Points: 1067.6
+  Expected Points: 1055.5
 

@@ -63,21 +63,16 @@ class WinProbabilityModelV2:
 
         # Base weights (when all data available)
         #
-        # Market data at 12%: useful as a "what do we not know?" signal
-        # but NOT a primary driver. Polymarket is mostly recreational
-        # bettors, and championship futures are a noisy proxy for
-        # head-to-head matchup strength (they bake in bracket path,
-        # not just team quality). Our sports-specific stats are more
-        # precise for matchup-level predictions.
-        #
-        # The 8% we moved off market goes to eff_margin (+5%) and
-        # four_factors (+3%) — our most rigorous, purpose-built signals.
+        # Prediction market data REMOVED — we rely purely on
+        # sports-specific statistical signals. The weight previously
+        # allocated to market data is redistributed to eff_margin,
+        # four_factors, and barthag.
         weights = {
-            "eff_margin": 0.40 if has_eff else 0,
-            "four_factors": 0.18 if has_four_factors else 0,
-            "barthag": 0.10 if has_barthag else 0,
+            "eff_margin": 0.45 if has_eff else 0,
+            "four_factors": 0.22 if has_four_factors else 0,
+            "barthag": 0.13 if has_barthag else 0,
             "seed_history": 0.10,
-            "market": 0.12 if has_market else 0,
+            "market": 0,  # DISABLED — no prediction market influence
             "upset_factors": 0.10 if has_four_factors else 0,
         }
 

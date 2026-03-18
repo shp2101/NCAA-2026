@@ -366,7 +366,7 @@
 
 <div class="header">
   <h1>NCAA Tournament 2026 — Bracket Optimizer</h1>
-  <div class="sub">500K Simulations | Sports Reference + Polymarket + Historical Calibration | Updated March 18, 2026</div>
+  <div class="sub">500K Simulations | Sports Reference + Historical Calibration (No Market Data) | 30-Person Pool | Updated March 18, 2026</div>
 </div>
 
 <div class="methodology">
@@ -380,30 +380,37 @@
       <div class="source-card">
         <div class="source-top">
           <span class="source-name">Adjusted Efficiency Margins</span>
-          <span class="source-weight">35%</span>
+          <span class="source-weight">45%</span>
         </div>
         <div class="source-desc">Sports Reference SRS + KenPom-style adjusted offensive/defensive efficiency per 100 possessions. Tempo-free, opponent-adjusted. Primary signal for team strength.</div>
       </div>
       <div class="source-card">
         <div class="source-top">
-          <span class="source-name">Prediction Markets</span>
-          <span class="source-weight">25%</span>
+          <span class="source-name">Four Factors (Dean Oliver)</span>
+          <span class="source-weight">22%</span>
         </div>
-        <div class="source-desc">Polymarket futures prices for championship + Final Four, converted to implied probabilities with vig removed (~4.2% overround). Markets aggregate private info efficiently — treat as a Bayesian prior.</div>
+        <div class="source-desc">eFG% (40%), Turnover Rate (25%), Offensive Rebounding (20%), Free Throw Rate (15%). These four factors explain ~90% of winning variance. Offense vs opponent defense matchup-level analysis.</div>
+      </div>
+      <div class="source-card">
+        <div class="source-top">
+          <span class="source-name">Barthag (Log5)</span>
+          <span class="source-weight">13%</span>
+        </div>
+        <div class="source-desc">Barttorvik's power rating converted to win probability via log5 method. Cross-validation signal that captures team quality from a different analytical lens than raw efficiency.</div>
       </div>
       <div class="source-card">
         <div class="source-top">
           <span class="source-name">Historical Seed Performance</span>
-          <span class="source-weight">20%</span>
+          <span class="source-weight">10%</span>
         </div>
         <div class="source-desc">Base rates from 1985–2025 tournament outcomes by seed matchup (e.g., 5v12 upset rate = 35.4%). Regularizes model away from overfitting to single-season noise. Applied as a Bayesian shrinkage prior.</div>
       </div>
       <div class="source-card">
         <div class="source-top">
-          <span class="source-name">Recency-Weighted Form</span>
-          <span class="source-weight">20%</span>
+          <span class="source-name">Upset Factors</span>
+          <span class="source-weight">10%</span>
         </div>
-        <div class="source-desc">Last 8 games weighted 3x vs. full season. Captures lineup changes, injuries, momentum. Half-life decay applied — games from 2 weeks ago count ~50% of last week. Tournament is about who's peaking now.</div>
+        <div class="source-desc">Tournament-specific upset signals: high turnover rate teams are upset-prone under pressure, poor FT% chokes in close games, high 3PT% teams have variance. Adjusts baseline seed probabilities.</div>
       </div>
     </div>
 
@@ -415,23 +422,23 @@
     <div class="method-section">
       <h4>Bracket Construction Logic</h4>
       <p>Not just "pick the higher probability team in every game." That maximizes expected points per game but ignores correlation and pool dynamics. Instead:</p>
-      <p style="margin-top:6px;"><strong>Bracket A (Duke)</strong> — Maximizes expected points. In each game, pick the team with the highest probability of reaching that round × points awarded. This is the Kelly-optimal bracket for a large pool where you need to maximize EV.</p>
-      <p style="margin-top:6px;"><strong>Bracket B (Michigan)</strong> — Maximizes win probability in a ~50-person pool. Uses contrarian value: if Michigan's model probability (27.8%) is much higher than public pick rate (~8%), the leverage ratio is 3.5x. You sacrifice ~4% EV for a ~2.5x increase in conditional win probability when your champion hits. Correct strategy when pool size is small enough that you need differentiation.</p>
+      <p style="margin-top:6px;"><strong>Bracket A (Duke)</strong> — Maximizes expected points. In each game, pick the team with the highest probability of reaching that round × points awarded. This is the Kelly-optimal bracket for a 30-person pool where you need to maximize EV.</p>
+      <p style="margin-top:6px;"><strong>Bracket B (Michigan)</strong> — Maximizes win probability in a 30-person pool. Uses contrarian value: if Michigan's model probability (27.8%) is much higher than public pick rate (~8%), the leverage ratio is 3.5x. You sacrifice ~5% EV for a ~2.5x increase in conditional win probability when your champion hits. In a 30-person pool, differentiation is critical.</p>
     </div>
 
     <div class="method-section">
       <h4>Key Model Edges vs. Market &amp; Public</h4>
-      <p style="margin-bottom:8px;">Sportsbook odds as of March 18 (ESPN/DraftKings), converted to implied probability with ~28% overround removed. Public pick % from ESPN Tournament Challenge.</p>
+      <p style="margin-bottom:8px;">Model uses only statistical signals (no prediction market data). Public pick % estimated from ESPN Tournament Challenge historical patterns.</p>
       <table class="edge-table">
-        <tr><th>Team</th><th>Seed</th><th>Model %</th><th>Market %</th><th>Public Pick %</th><th>Model vs. Public</th><th>Implication</th></tr>
-        <tr><td>Duke</td><td class="num">1 (East)</td><td class="num">30.6%</td><td class="num">22.6%</td><td class="num">33%</td><td class="num neg">-2.4%</td><td>Overowned — but still highest EV</td></tr>
-        <tr><td>Michigan</td><td class="num">1 (MW)</td><td class="num">27.9%</td><td class="num">20.6%</td><td class="num">8%</td><td class="num pos">+19.9%</td><td>Massively underowned — 3.5x leverage</td></tr>
-        <tr><td>Arizona</td><td class="num">1 (West)</td><td class="num">14.3%</td><td class="num">16.2%</td><td class="num">11%</td><td class="num pos">+3.3%</td><td>Model and market aligned, underowned by public</td></tr>
-        <tr><td>Florida</td><td class="num">1 (South)</td><td class="num">6.0%</td><td class="num">11.8%</td><td class="num">9%</td><td class="num neg">-3.0%</td><td>Defending champs but tough path through Houston</td></tr>
-        <tr><td>Houston</td><td class="num">2 (South)</td><td class="num">4.8%</td><td class="num">8.4%</td><td class="num">18%</td><td class="num neg">-13.2%</td><td>Most overowned team — public bias toward name</td></tr>
-        <tr><td>Iowa State</td><td class="num">2 (MW)</td><td class="num">4.1%</td><td class="num">6.2%</td><td class="num">2%</td><td class="num pos">+2.1%</td><td>Underowned dark horse — model agrees with market</td></tr>
-        <tr><td>Illinois</td><td class="num">3 (South)</td><td class="num">3.9%</td><td class="num">5.3%</td><td class="num">3%</td><td class="num pos">+0.9%</td><td>Bracket A Final Four pick — good value</td></tr>
-        <tr><td>Purdue</td><td class="num">2 (West)</td><td class="num">2.8%</td><td class="num">4.7%</td><td class="num">4%</td><td class="num neg">-1.2%</td><td>Bracket B Final Four — slight contrarian value</td></tr>
+        <tr><th>Team</th><th>Seed</th><th>Model %</th><th>Public Pick %</th><th>Model vs. Public</th><th>Implication</th></tr>
+        <tr><td>Duke</td><td class="num">1 (East)</td><td class="num">30.0%</td><td class="num">33%</td><td class="num neg">-3.0%</td><td>Overowned — but still highest EV</td></tr>
+        <tr><td>Michigan</td><td class="num">1 (MW)</td><td class="num">27.8%</td><td class="num">8%</td><td class="num pos">+19.8%</td><td>Massively underowned — 3.5x leverage</td></tr>
+        <tr><td>Arizona</td><td class="num">1 (West)</td><td class="num">13.8%</td><td class="num">11%</td><td class="num pos">+2.8%</td><td>Slightly underowned by public</td></tr>
+        <tr><td>Florida</td><td class="num">1 (South)</td><td class="num">5.2%</td><td class="num">9%</td><td class="num neg">-3.8%</td><td>Defending champs but tough path through Houston</td></tr>
+        <tr><td>Houston</td><td class="num">2 (South)</td><td class="num">4.7%</td><td class="num">18%</td><td class="num neg">-13.3%</td><td>Most overowned team — public bias toward name</td></tr>
+        <tr><td>Iowa State</td><td class="num">2 (MW)</td><td class="num">4.5%</td><td class="num">2%</td><td class="num pos">+2.5%</td><td>Underowned dark horse with strong stats</td></tr>
+        <tr><td>Illinois</td><td class="num">3 (South)</td><td class="num">4.7%</td><td class="num">3%</td><td class="num pos">+1.7%</td><td>Bracket A Final Four pick — good value</td></tr>
+        <tr><td>Purdue</td><td class="num">2 (West)</td><td class="num">3.1%</td><td class="num">4%</td><td class="num neg">-0.9%</td><td>Bracket B Final Four — slight contrarian value</td></tr>
       </table>
     </div>
 
@@ -450,17 +457,17 @@
 
 <div class="stats-bar" id="stats-a">
   <div class="stat highlight"><div class="val">Duke</div><div class="label">Champion</div></div>
-  <div class="stat"><div class="val">1,115</div><div class="label">Expected Pts</div></div>
-  <div class="stat"><div class="val">30.6%</div><div class="label">Model Champ %</div></div>
-  <div class="stat"><div class="val">37.5%</div><div class="label">Top 3 Rate</div></div>
-  <div class="stat"><div class="val">18.5%</div><div class="label">Win Pool</div></div>
+  <div class="stat"><div class="val">1,114</div><div class="label">Expected Pts</div></div>
+  <div class="stat"><div class="val">30.0%</div><div class="label">Model Champ %</div></div>
+  <div class="stat"><div class="val">48.3%</div><div class="label">Top 3 Rate</div></div>
+  <div class="stat"><div class="val">23.6%</div><div class="label">Win Pool</div></div>
 </div>
 <div class="stats-bar hidden" id="stats-b">
   <div class="stat highlight"><div class="val">Michigan</div><div class="label">Champion</div></div>
-  <div class="stat"><div class="val">1,068</div><div class="label">Expected Pts</div></div>
-  <div class="stat"><div class="val">27.9%</div><div class="label">Model Champ %</div></div>
-  <div class="stat"><div class="val">26.8%</div><div class="label">Top 3 Rate</div></div>
-  <div class="stat"><div class="val">11.9%</div><div class="label">Win Pool</div></div>
+  <div class="stat"><div class="val">1,056</div><div class="label">Expected Pts</div></div>
+  <div class="stat"><div class="val">27.8%</div><div class="label">Model Champ %</div></div>
+  <div class="stat"><div class="val">34.0%</div><div class="label">Top 3 Rate</div></div>
+  <div class="stat"><div class="val">14.2%</div><div class="label">Win Pool</div></div>
 </div>
 
 <div class="legend">
@@ -524,7 +531,7 @@ const bracketB = {
   ff: ["Duke","Houston","Purdue","Michigan"],
   rounds: {
     "East":    {1:["Duke","Ohio State","St. John's","Kansas","Louisville","Michigan State","UCLA","UConn"],
-                2:["Duke","St. John's","Michigan State","UConn"],3:["Duke","Michigan State"],4:["Duke"]},
+                2:["Duke","St. John's","Louisville","UConn"],3:["Duke","Louisville"],4:["Duke"]},
     "South":   {1:["Florida","Iowa","Vanderbilt","Nebraska","North Carolina","Illinois","St. Mary's","Houston"],
                 2:["Florida","Vanderbilt","Illinois","Houston"],3:["Vanderbilt","Houston"],4:["Houston"]},
     "West":    {1:["Arizona","Utah State","Wisconsin","Arkansas","BYU","Gonzaga","Miami","Purdue"],

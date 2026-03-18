@@ -121,7 +121,7 @@
         "seed": 1
       }
     ],
-    "expected_points": 1114.6030799999996,
+    "expected_points": 1113.63746,
     "final_four": [
       "Duke",
       "Illinois",
@@ -149,12 +149,12 @@
         "2": [
           "Duke",
           "St. John's",
-          "Michigan State",
+          "Louisville",
           "UConn"
         ],
         "3": [
           "Duke",
-          "Michigan State"
+          "Louisville"
         ],
         "4": [
           "Duke"
@@ -254,7 +254,7 @@
         "seed": 1
       }
     ],
-    "expected_points": 1067.6300399999998,
+    "expected_points": 1055.5076599999995,
     "final_four": [
       "Duke",
       "Houston",

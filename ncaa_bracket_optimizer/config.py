@@ -24,7 +24,7 @@ NUM_SIMULATIONS = 500000  # Monte Carlo iterations
 NUM_BRACKET_CANDIDATES = 5000  # Candidate brackets to evaluate for EV
 
 # Pool parameters
-POOL_SIZE = 50
+POOL_SIZE = 30
 NUM_ENTRIES = 2
 
 # Strategy parameters
