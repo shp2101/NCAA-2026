@@ -1,0 +1,151 @@
+{
+  "_source": "ESPN People's Bracket - Tournament Challenge 2026",
+  "_scraped": "2026-03-18",
+  "_note": "Percentages represent % of ESPN bracket entries picking each team to advance to that round",
+
+  "r64": {
+    "East": {
+      "Duke": 98, "Siena": 2,
+      "Ohio State": 59, "TCU": 41,
+      "St. John's": 88, "Northern Iowa": 12,
+      "Kansas": 93, "Cal Baptist": 7,
+      "Louisville": 62, "South Florida": 38,
+      "Michigan State": 95, "North Dakota State": 5,
+      "UCLA": 66, "UCF": 34,
+      "UConn": 96, "Furman": 4
+    },
+    "South": {
+      "Florida": 98, "Prairie View A&M": 2,
+      "Clemson": 42, "Iowa": 58,
+      "Vanderbilt": 83, "McNeese": 17,
+      "Nebraska": 87, "Troy": 13,
+      "North Carolina": 68, "VCU": 32,
+      "Illinois": 92, "Penn": 8,
+      "St. Mary's": 54, "Texas A&M": 46,
+      "Houston": 97, "Idaho": 3
+    },
+    "West": {
+      "Arizona": 97, "LIU": 3,
+      "Villanova": 51, "Utah State": 49,
+      "Wisconsin": 83, "High Point": 17,
+      "Arkansas": 92, "Hawaii": 8,
+      "BYU": 79, "Texas": 21,
+      "Gonzaga": 95, "Kennesaw State": 5,
+      "Miami": 61, "Missouri": 39,
+      "Purdue": 96, "Queens": 4
+    },
+    "Midwest": {
+      "Michigan": 98, "UMBC": 2,
+      "Georgia": 56, "St. Louis": 44,
+      "Texas Tech": 77, "Akron": 23,
+      "Alabama": 89, "Hofstra": 11,
+      "Tennessee": 83, "SMU": 17,
+      "Virginia": 95, "Wright State": 5,
+      "Kentucky": 69, "Santa Clara": 31,
+      "Iowa State": 96, "Tennessee State": 4
+    }
+  },
+
+  "r32": {
+    "East": {
+      "Duke": 96, "Ohio State": 4,
+      "St. John's": 53, "Kansas": 47,
+      "Louisville": 19, "Michigan State": 81,
+      "UCLA": 17, "UConn": 83
+    },
+    "South": {
+      "Florida": 95, "Iowa": 5,
+      "Vanderbilt": 59, "Nebraska": 41,
+      "North Carolina": 26, "Illinois": 74,
+      "St. Mary's": 7, "Houston": 93
+    },
+    "West": {
+      "Arizona": 95, "Villanova": 5,
+      "Wisconsin": 36, "Arkansas": 64,
+      "BYU": 31, "Gonzaga": 69,
+      "Miami": 14, "Purdue": 86
+    },
+    "Midwest": {
+      "Michigan": 96, "Georgia": 4,
+      "Texas Tech": 45, "Alabama": 55,
+      "Tennessee": 31, "Virginia": 69,
+      "Kentucky": 17, "Iowa State": 83
+    }
+  },
+
+  "s16": {
+    "East": {
+      "Duke": 88, "St. John's": 12,
+      "Michigan State": 43, "UConn": 57
+    },
+    "South": {
+      "Florida": 84, "Vanderbilt": 16,
+      "Illinois": 28, "Houston": 72
+    },
+    "West": {
+      "Arizona": 83, "Arkansas": 17,
+      "Gonzaga": 38, "Purdue": 62
+    },
+    "Midwest": {
+      "Michigan": 90, "Alabama": 10,
+      "Virginia": 34, "Iowa State": 66
+    }
+  },
+
+  "e8": {
+    "East": {"Duke": 81, "UConn": 19},
+    "South": {"Florida": 52, "Houston": 48},
+    "West": {"Arizona": 79, "Purdue": 21},
+    "Midwest": {"Michigan": 73, "Iowa State": 27}
+  },
+
+  "f4": {
+    "semi1": {"Duke": 74, "Florida": 26},
+    "semi2": {"Arizona": 56, "Michigan": 44}
+  },
+
+  "championship": {
+    "Duke": 54, "Arizona": 46
+  },
+
+  "champion_pick_pct": {
+    "Duke": 54,
+    "Arizona": 46
+  },
+
+  "summary_advancement_pct": {
+    "Duke":          {"r64": 98, "r32": 96, "s16": 88, "e8": 81, "f4": 74, "champ": 54},
+    "Michigan":      {"r64": 98, "r32": 96, "s16": 90, "e8": 73, "f4": 44, "champ": 0},
+    "Arizona":       {"r64": 97, "r32": 95, "s16": 83, "e8": 79, "f4": 56, "champ": 46},
+    "Florida":       {"r64": 98, "r32": 95, "s16": 84, "e8": 52, "f4": 26, "champ": 0},
+    "Houston":       {"r64": 97, "r32": 93, "s16": 72, "e8": 48, "f4": 0, "champ": 0},
+    "Iowa State":    {"r64": 96, "r32": 83, "s16": 66, "e8": 27, "f4": 0, "champ": 0},
+    "UConn":         {"r64": 96, "r32": 83, "s16": 57, "e8": 19, "f4": 0, "champ": 0},
+    "Illinois":      {"r64": 92, "r32": 74, "s16": 28, "e8": 0, "f4": 0, "champ": 0},
+    "Purdue":        {"r64": 96, "r32": 86, "s16": 62, "e8": 21, "f4": 0, "champ": 0},
+    "Arkansas":      {"r64": 92, "r32": 64, "s16": 17, "e8": 0, "f4": 0, "champ": 0},
+    "Alabama":       {"r64": 89, "r32": 55, "s16": 10, "e8": 0, "f4": 0, "champ": 0},
+    "Michigan State": {"r64": 95, "r32": 81, "s16": 43, "e8": 0, "f4": 0, "champ": 0},
+    "Virginia":      {"r64": 95, "r32": 69, "s16": 34, "e8": 0, "f4": 0, "champ": 0},
+    "Gonzaga":       {"r64": 95, "r32": 69, "s16": 38, "e8": 0, "f4": 0, "champ": 0},
+    "Vanderbilt":    {"r64": 83, "r32": 59, "s16": 16, "e8": 0, "f4": 0, "champ": 0},
+    "Kansas":        {"r64": 93, "r32": 47, "s16": 0, "e8": 0, "f4": 0, "champ": 0},
+    "St. John's":    {"r64": 88, "r32": 53, "s16": 12, "e8": 0, "f4": 0, "champ": 0},
+    "Louisville":    {"r64": 62, "r32": 19, "s16": 0, "e8": 0, "f4": 0, "champ": 0},
+    "Nebraska":      {"r64": 87, "r32": 41, "s16": 0, "e8": 0, "f4": 0, "champ": 0},
+    "North Carolina":{"r64": 68, "r32": 26, "s16": 0, "e8": 0, "f4": 0, "champ": 0},
+    "Wisconsin":     {"r64": 83, "r32": 36, "s16": 0, "e8": 0, "f4": 0, "champ": 0},
+    "BYU":           {"r64": 79, "r32": 31, "s16": 0, "e8": 0, "f4": 0, "champ": 0},
+    "Texas Tech":    {"r64": 77, "r32": 45, "s16": 0, "e8": 0, "f4": 0, "champ": 0},
+    "Tennessee":     {"r64": 83, "r32": 31, "s16": 0, "e8": 0, "f4": 0, "champ": 0},
+    "Kentucky":      {"r64": 69, "r32": 17, "s16": 0, "e8": 0, "f4": 0, "champ": 0},
+    "UCLA":          {"r64": 66, "r32": 17, "s16": 0, "e8": 0, "f4": 0, "champ": 0},
+    "Ohio State":    {"r64": 59, "r32": 4, "s16": 0, "e8": 0, "f4": 0, "champ": 0},
+    "Iowa":          {"r64": 58, "r32": 5, "s16": 0, "e8": 0, "f4": 0, "champ": 0},
+    "Georgia":       {"r64": 56, "r32": 4, "s16": 0, "e8": 0, "f4": 0, "champ": 0},
+    "Miami":         {"r64": 61, "r32": 14, "s16": 0, "e8": 0, "f4": 0, "champ": 0},
+    "St. Mary's":    {"r64": 54, "r32": 7, "s16": 0, "e8": 0, "f4": 0, "champ": 0},
+    "Villanova":     {"r64": 51, "r32": 5, "s16": 0, "e8": 0, "f4": 0, "champ": 0},
+    "Clemson":       {"r64": 42, "r32": 0, "s16": 0, "e8": 0, "f4": 0, "champ": 0}
+  }
+}

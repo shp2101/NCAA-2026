@@ -121,16 +121,16 @@
         "seed": 1
       }
     ],
-    "expected_points": 1113.63746,
+    "expected_points": 1047.35862,
     "final_four": [
       "Duke",
       "Illinois",
       "Arizona",
       "Michigan"
     ],
-    "finalist_1": "Duke",
+    "finalist_1": "Illinois",
     "finalist_2": "Michigan",
-    "champion": "Duke"
+    "champion": "Michigan"
   },
   "bracket_b": {
     "label": "BRACKET B (Contrarian Upside)",
@@ -149,15 +149,15 @@
         "2": [
           "Duke",
           "St. John's",
-          "Louisville",
+          "Michigan State",
           "UConn"
         ],
         "3": [
           "Duke",
-          "Louisville"
+          "Michigan State"
         ],
         "4": [
-          "Duke"
+          "Michigan State"
         ]
       },
       "South": {
@@ -173,16 +173,16 @@
         ],
         "2": [
           "Florida",
-          "Vanderbilt",
+          "Nebraska",
           "Illinois",
           "Houston"
         ],
         "3": [
-          "Vanderbilt",
-          "Houston"
+          "Florida",
+          "Illinois"
         ],
         "4": [
-          "Houston"
+          "Florida"
         ]
       },
       "West": {
@@ -204,10 +204,10 @@
         ],
         "3": [
           "Arizona",
-          "Purdue"
+          "Gonzaga"
         ],
         "4": [
-          "Purdue"
+          "Gonzaga"
         ]
       },
       "Midwest": {
@@ -228,41 +228,41 @@
           "Iowa State"
         ],
         "3": [
-          "Michigan",
-          "Iowa State"
+          "Texas Tech",
+          "Tennessee"
         ],
         "4": [
-          "Michigan"
+          "Texas Tech"
         ]
       }
     },
     "picks": [
       {
-        "name": "Duke",
+        "name": "Michigan State",
+        "seed": 3
+      },
+      {
+        "name": "Florida",
         "seed": 1
       },
       {
-        "name": "Houston",
-        "seed": 2
+        "name": "Gonzaga",
+        "seed": 3
       },
       {
-        "name": "Purdue",
-        "seed": 2
-      },
-      {
-        "name": "Michigan",
-        "seed": 1
+        "name": "Texas Tech",
+        "seed": 5
       }
     ],
-    "expected_points": 1055.5076599999995,
+    "expected_points": 739.34234,
     "final_four": [
-      "Duke",
-      "Houston",
-      "Purdue",
-      "Michigan"
+      "Michigan State",
+      "Florida",
+      "Gonzaga",
+      "Texas Tech"
     ],
-    "finalist_1": "Duke",
-    "finalist_2": "Michigan",
-    "champion": "Michigan"
+    "finalist_1": "Florida",
+    "finalist_2": "Gonzaga",
+    "champion": "Florida"
   }
 }

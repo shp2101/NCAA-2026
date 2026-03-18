@@ -182,7 +182,32 @@ def run_pipeline(n_sims=500000):
     # Prize structure: equal weight for now (will update when Sanjay confirms)
     prize_structure = {1: 1.0, 2: 1.0, 3: 1.0}
 
-    opt = BracketOptimizer(sim, None, None, prize_structure)
+    # Load real ESPN public pick data
+    espn_path = os.path.join(DATA_DIR, "espn_public_picks.json")
+    espn_public_picks = None
+    if os.path.exists(espn_path):
+        print("  Loading REAL ESPN People's Bracket data...")
+        with open(espn_path) as f:
+            espn_raw = json.load(f)
+        espn_public_picks = {}
+        summary = espn_raw.get("summary_advancement_pct", {})
+        # Floor values: ESPN shows 0% for teams nobody picks past a round,
+        # but in reality some small % always exists. Use seed-based minimums
+        # to avoid infinite leverage ratios.
+        for team, rounds in summary.items():
+            espn_public_picks[team] = {
+                "r64": max(rounds.get("r64", 50), 5) / 100,
+                "r32": max(rounds.get("r32", 25), 3) / 100,
+                "s16": max(rounds.get("s16", 10), 1) / 100,
+                "e8": max(rounds.get("e8", 5), 0.5) / 100,
+                "f4": max(rounds.get("f4", 2), 0.3) / 100,
+                "champ": max(rounds.get("champ", 1), 0.2) / 100,
+            }
+        print(f"  ESPN public picks loaded for {len(espn_public_picks)} teams")
+    else:
+        print("  No ESPN data found — using estimated public picks from seed data")
+
+    opt = BracketOptimizer(sim, espn_public_picks, None, prize_structure)
     opt.compute_leverage_scores()
 
     bracket_a, bracket_b = opt.generate_portfolio()

@@ -56,8 +56,23 @@ class BracketOptimizer:
         # Default: equal weight for top 3 (optimize for P(top 3))
         self.prize_structure = prize_structure or {1: 1.0, 2: 1.0, 3: 1.0}
 
-        # Estimate public picks from seed if not provided
-        if self.public_picks is None:
+        # Use provided ESPN public picks, or estimate from seed data
+        if self.public_picks is not None:
+            print(f"[OPT] Using REAL ESPN public pick data ({len(self.public_picks)} teams)")
+            # Fill in any missing teams with seed-based estimates
+            for region in self.field:
+                for seed_str, team in self.field[region].items():
+                    if team not in self.public_picks:
+                        seed = int(seed_str)
+                        self.public_picks[team] = {
+                            "r64": self._chalk_pick_rate(seed, 1),
+                            "r32": self._chalk_pick_rate(seed, 2),
+                            "s16": self._chalk_pick_rate(seed, 3),
+                            "e8": self._chalk_pick_rate(seed, 4),
+                            "f4": self._chalk_pick_rate(seed, 5),
+                            "champ": self._chalk_pick_rate(seed, 6),
+                        }
+        else:
             self.public_picks = self._estimate_public_picks()
 
         # If we have group picks, blend them with national estimates
@@ -131,12 +146,15 @@ class BracketOptimizer:
                 public_pct = max(public.get(round_map[round_num], 0.01), 0.001)
 
                 lev = model_prob / public_pct
+                # Cap leverage to prevent extreme contrarian distortion
+                # In a 20-30 person pool, >5x leverage provides diminishing returns
+                capped_lev = min(lev, 5.0)
                 leverage[team][round_num] = {
                     "model_prob": model_prob,
                     "public_pct": public_pct,
-                    "leverage": lev,
+                    "leverage": capped_lev,
                     "ev_points": model_prob * ESPN_SCORING[round_num],
-                    "contest_ev": model_prob * ESPN_SCORING[round_num] * (lev ** LEVERAGE_WEIGHT),
+                    "contest_ev": model_prob * ESPN_SCORING[round_num] * (capped_lev ** LEVERAGE_WEIGHT),
                 }
 
         self.leverage_scores = leverage
@@ -518,7 +536,15 @@ class BracketOptimizer:
         leverage_a = lev_a.get("leverage", 1.0)
         leverage_b = lev_b.get("leverage", 1.0)
 
-        round_leverage_boost = 1 + (round_num - 1) * 0.15
+        # Leverage matters more in later rounds where point values are higher
+        # and differentiation matters more. In early rounds (R64-S16), mostly
+        # pick the better team; leverage kicks in for E8+ picks.
+        if round_num <= 2:
+            round_leverage_boost = 0.3  # minimal leverage in R64/R32
+        elif round_num == 3:
+            round_leverage_boost = 0.6  # moderate in S16
+        else:
+            round_leverage_boost = 1.0 + (round_num - 4) * 0.2  # full leverage E8+
 
         score_a = prob_a * (leverage_a ** (leverage_mult * round_leverage_boost))
         score_b = (1 - prob_a) * (leverage_b ** (leverage_mult * round_leverage_boost))

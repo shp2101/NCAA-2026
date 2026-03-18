@@ -366,7 +366,7 @@
 
 <div class="header">
   <h1>NCAA Tournament 2026 — Bracket Optimizer</h1>
-  <div class="sub">500K Simulations | Sports Reference + Historical Calibration (No Market Data) | 30-Person Pool | Updated March 18, 2026</div>
+  <div class="sub">500K Simulations | Sports Reference + ESPN Public Picks + Historical Calibration | 30-Person Pool | Updated March 18, 2026</div>
 </div>
 
 <div class="methodology">
@@ -422,23 +422,23 @@
     <div class="method-section">
       <h4>Bracket Construction Logic</h4>
       <p>Not just "pick the higher probability team in every game." That maximizes expected points per game but ignores correlation and pool dynamics. Instead:</p>
-      <p style="margin-top:6px;"><strong>Bracket A (Duke)</strong> — Maximizes expected points. In each game, pick the team with the highest probability of reaching that round × points awarded. This is the Kelly-optimal bracket for a 30-person pool where you need to maximize EV.</p>
-      <p style="margin-top:6px;"><strong>Bracket B (Michigan)</strong> — Maximizes win probability in a 30-person pool. Uses contrarian value: if Michigan's model probability (27.8%) is much higher than public pick rate (~8%), the leverage ratio is 3.5x. You sacrifice ~5% EV for a ~2.5x increase in conditional win probability when your champion hits. In a 30-person pool, differentiation is critical.</p>
+      <p style="margin-top:6px;"><strong>Bracket A (Michigan)</strong> — Optimized for leverage in a 30-person pool. Michigan has 27.9% championship probability but only ~0.2% of ESPN public brackets pick them as champion — that's 140x leverage, the biggest edge in the field. Uses real ESPN People's Bracket data for public pick percentages. Duke/Illinois/Arizona/Michigan Final Four.</p>
+      <p style="margin-top:6px;"><strong>Bracket B (Florida)</strong> — Maximum contrarian portfolio bracket. Designed to win outright when chalk completely busts. Different champion AND completely different Final Four from Bracket A (Michigan State/Florida/Gonzaga/Texas Tech). Together with Bracket A, covers both "model favorite" and "chaos" scenarios for 27.2% combined win rate.</p>
     </div>
 
     <div class="method-section">
       <h4>Key Model Edges vs. Market &amp; Public</h4>
-      <p style="margin-bottom:8px;">Model uses only statistical signals (no prediction market data). Public pick % estimated from ESPN Tournament Challenge historical patterns.</p>
+      <p style="margin-bottom:8px;">Public pick % from real ESPN People's Bracket data (scraped March 18). Model uses only statistical signals (no prediction market data).</p>
       <table class="edge-table">
-        <tr><th>Team</th><th>Seed</th><th>Model %</th><th>Public Pick %</th><th>Model vs. Public</th><th>Implication</th></tr>
-        <tr><td>Duke</td><td class="num">1 (East)</td><td class="num">30.0%</td><td class="num">33%</td><td class="num neg">-3.0%</td><td>Overowned — but still highest EV</td></tr>
-        <tr><td>Michigan</td><td class="num">1 (MW)</td><td class="num">27.8%</td><td class="num">8%</td><td class="num pos">+19.8%</td><td>Massively underowned — 3.5x leverage</td></tr>
-        <tr><td>Arizona</td><td class="num">1 (West)</td><td class="num">13.8%</td><td class="num">11%</td><td class="num pos">+2.8%</td><td>Slightly underowned by public</td></tr>
-        <tr><td>Florida</td><td class="num">1 (South)</td><td class="num">5.2%</td><td class="num">9%</td><td class="num neg">-3.8%</td><td>Defending champs but tough path through Houston</td></tr>
-        <tr><td>Houston</td><td class="num">2 (South)</td><td class="num">4.7%</td><td class="num">18%</td><td class="num neg">-13.3%</td><td>Most overowned team — public bias toward name</td></tr>
-        <tr><td>Iowa State</td><td class="num">2 (MW)</td><td class="num">4.5%</td><td class="num">2%</td><td class="num pos">+2.5%</td><td>Underowned dark horse with strong stats</td></tr>
-        <tr><td>Illinois</td><td class="num">3 (South)</td><td class="num">4.7%</td><td class="num">3%</td><td class="num pos">+1.7%</td><td>Bracket A Final Four pick — good value</td></tr>
-        <tr><td>Purdue</td><td class="num">2 (West)</td><td class="num">3.1%</td><td class="num">4%</td><td class="num neg">-0.9%</td><td>Bracket B Final Four — slight contrarian value</td></tr>
+        <tr><th>Team</th><th>Seed</th><th>Model %</th><th>ESPN Public %</th><th>Leverage</th><th>Implication</th></tr>
+        <tr><td>Michigan</td><td class="num">1 (MW)</td><td class="num">27.9%</td><td class="num">~0%</td><td class="num pos">140x</td><td>ESPN has 0% picking Michigan as champ — biggest edge in field</td></tr>
+        <tr><td>Duke</td><td class="num">1 (East)</td><td class="num">29.9%</td><td class="num">54%</td><td class="num neg">0.55x</td><td>Best team but massively overowned — everyone picks Duke</td></tr>
+        <tr><td>Arizona</td><td class="num">1 (West)</td><td class="num">13.8%</td><td class="num">46%</td><td class="num neg">0.30x</td><td>ESPN finalist — overowned by 3.3x</td></tr>
+        <tr><td>Illinois</td><td class="num">3 (South)</td><td class="num">4.7%</td><td class="num">~0%</td><td class="num pos">23x</td><td>Public eliminates them in S16 — huge FF leverage</td></tr>
+        <tr><td>Florida</td><td class="num">1 (South)</td><td class="num">5.2%</td><td class="num">~0%</td><td class="num pos">26x</td><td>Bracket B champion — nobody picks them to win it</td></tr>
+        <tr><td>Houston</td><td class="num">2 (South)</td><td class="num">4.7%</td><td class="num">48%</td><td class="num neg">0.10x</td><td>Most overowned: 48% E8 public vs 28% model</td></tr>
+        <tr><td>Iowa State</td><td class="num">2 (MW)</td><td class="num">4.6%</td><td class="num">~0%</td><td class="num pos">23x</td><td>Public has them losing E8 — undervalued</td></tr>
+        <tr><td>UConn</td><td class="num">2 (East)</td><td class="num">1.0%</td><td class="num">19%</td><td class="num neg">0.05x</td><td>Massively overowned — 19x public vs model</td></tr>
       </table>
     </div>
 
@@ -452,13 +452,8 @@
 
 <div style="text-align:center;padding:12px 16px 0;color:#6b7280;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;">30-Person Pool</div>
 <div class="tabs">
-  <div class="tab a active" onclick="showBracket('a')">Bracket A — Duke (Model Favorite)</div>
-  <div class="tab b" onclick="showBracket('b')">Bracket B — Michigan (Contrarian)</div>
-</div>
-<div style="text-align:center;padding:12px 16px 0;color:#6b7280;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;">20-Person Pool</div>
-<div class="tabs">
-  <div class="tab a" onclick="showBracket('c')" id="tab-c" style="background:#1a3a2f;color:#34d399;border-color:#059669;">Bracket C — Duke (20-Person)</div>
-  <div class="tab b" onclick="showBracket('d')" id="tab-d" style="background:#3a2f1a;color:#fbbf24;border-color:#d97706;">Bracket D — Michigan (20-Person)</div>
+  <div class="tab a active" onclick="showBracket('a')">Bracket A — Michigan (Leverage Play)</div>
+  <div class="tab b" onclick="showBracket('b')">Bracket B — Florida (Max Contrarian)</div>
 </div>
 <div style="text-align:center;padding:12px 16px 0;color:#6b7280;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;">Chaos Mode</div>
 <div class="tabs">
@@ -466,34 +461,22 @@
 </div>
 
 <div class="stats-bar" id="stats-a">
-  <div class="stat highlight"><div class="val">Duke</div><div class="label">Champion</div></div>
-  <div class="stat"><div class="val">1,114</div><div class="label">Expected Pts</div></div>
-  <div class="stat"><div class="val">30.0%</div><div class="label">Model Champ %</div></div>
-  <div class="stat"><div class="val">48.3%</div><div class="label">Top 3 Rate</div></div>
-  <div class="stat"><div class="val">23.6%</div><div class="label">Win Pool</div></div>
+  <div class="stat highlight"><div class="val">Michigan</div><div class="label">Champion</div></div>
+  <div class="stat"><div class="val">1,047</div><div class="label">Expected Pts</div></div>
+  <div class="stat"><div class="val">27.9%</div><div class="label">Model Champ %</div></div>
+  <div class="stat"><div class="val">55.8%</div><div class="label">Top 3 Rate</div></div>
+  <div class="stat"><div class="val">27.2%</div><div class="label">Win Pool</div></div>
 </div>
 <div class="stats-bar hidden" id="stats-b">
-  <div class="stat highlight"><div class="val">Michigan</div><div class="label">Champion</div></div>
-  <div class="stat"><div class="val">1,056</div><div class="label">Expected Pts</div></div>
-  <div class="stat"><div class="val">27.8%</div><div class="label">Model Champ %</div></div>
-  <div class="stat"><div class="val">34.0%</div><div class="label">Top 3 Rate</div></div>
-  <div class="stat"><div class="val">14.2%</div><div class="label">Win Pool</div></div>
+  <div class="stat highlight"><div class="val">Florida</div><div class="label">Champion</div></div>
+  <div class="stat"><div class="val">739</div><div class="label">Expected Pts</div></div>
+  <div class="stat"><div class="val">5.2%</div><div class="label">Model Champ %</div></div>
+  <div class="stat"><div class="val">55.8%</div><div class="label">Combined Top 3</div></div>
+  <div class="stat"><div class="val">27.2%</div><div class="label">Combined Win</div></div>
 </div>
 
-<div class="stats-bar hidden" id="stats-c">
-  <div class="stat highlight"><div class="val">Duke</div><div class="label">Champion</div></div>
-  <div class="stat"><div class="val">1,113</div><div class="label">Expected Pts</div></div>
-  <div class="stat"><div class="val">30.0%</div><div class="label">Model Champ %</div></div>
-  <div class="stat"><div class="val">58.3%</div><div class="label">Top 3 (20p)</div></div>
-  <div class="stat"><div class="val">29.0%</div><div class="label">Win Pool (20p)</div></div>
-</div>
-<div class="stats-bar hidden" id="stats-d">
-  <div class="stat highlight"><div class="val">Michigan</div><div class="label">Champion</div></div>
-  <div class="stat"><div class="val">1,055</div><div class="label">Expected Pts</div></div>
-  <div class="stat"><div class="val">27.8%</div><div class="label">Model Champ %</div></div>
-  <div class="stat"><div class="val">42.8%</div><div class="label">Top 3 (20p)</div></div>
-  <div class="stat"><div class="val">18.7%</div><div class="label">Win Pool (20p)</div></div>
-</div>
+<div class="stats-bar hidden" id="stats-c"></div>
+<div class="stats-bar hidden" id="stats-d"></div>
 <div class="stats-bar hidden" id="stats-e">
   <div class="stat highlight"><div class="val">Illinois</div><div class="label">Champion</div></div>
   <div class="stat"><div class="val">1,053</div><div class="label">Expected Pts</div></div>
@@ -545,8 +528,8 @@ const field = {
 };
 
 const bracketA = {
-  champion: "Duke",
-  finalist1: "Duke", finalist2: "Michigan",
+  champion: "Michigan",
+  finalist1: "Illinois", finalist2: "Michigan",
   ff: ["Duke","Illinois","Arizona","Michigan"],
   rounds: {
     "East":    {1:["Duke","Ohio State","St. John's","Kansas","Louisville","Michigan State","UCLA","UConn"],
@@ -561,18 +544,18 @@ const bracketA = {
 };
 
 const bracketB = {
-  champion: "Michigan",
-  finalist1: "Duke", finalist2: "Michigan",
-  ff: ["Duke","Houston","Purdue","Michigan"],
+  champion: "Florida",
+  finalist1: "Florida", finalist2: "Gonzaga",
+  ff: ["Michigan State","Florida","Gonzaga","Texas Tech"],
   rounds: {
     "East":    {1:["Duke","Ohio State","St. John's","Kansas","Louisville","Michigan State","UCLA","UConn"],
-                2:["Duke","St. John's","Louisville","UConn"],3:["Duke","Louisville"],4:["Duke"]},
+                2:["Duke","St. John's","Michigan State","UConn"],3:["Duke","Michigan State"],4:["Michigan State"]},
     "South":   {1:["Florida","Iowa","Vanderbilt","Nebraska","North Carolina","Illinois","St. Mary's","Houston"],
-                2:["Florida","Vanderbilt","Illinois","Houston"],3:["Vanderbilt","Houston"],4:["Houston"]},
+                2:["Florida","Nebraska","Illinois","Houston"],3:["Florida","Illinois"],4:["Florida"]},
     "West":    {1:["Arizona","Utah State","Wisconsin","Arkansas","BYU","Gonzaga","Miami","Purdue"],
-                2:["Arizona","Arkansas","Gonzaga","Purdue"],3:["Arizona","Purdue"],4:["Purdue"]},
+                2:["Arizona","Arkansas","Gonzaga","Purdue"],3:["Arizona","Gonzaga"],4:["Gonzaga"]},
     "Midwest": {1:["Michigan","Georgia","Texas Tech","Alabama","Tennessee","Virginia","Kentucky","Iowa State"],
-                2:["Michigan","Texas Tech","Tennessee","Iowa State"],3:["Michigan","Iowa State"],4:["Michigan"]}
+                2:["Michigan","Texas Tech","Tennessee","Iowa State"],3:["Texas Tech","Tennessee"],4:["Texas Tech"]}
   }
 };
 
