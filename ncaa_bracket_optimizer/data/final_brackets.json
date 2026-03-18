@@ -1,0 +1,268 @@
+{
+  "bracket_a": {
+    "label": "BRACKET A (Model Favorite)",
+    "rounds": {
+      "East": {
+        "1": [
+          "Duke",
+          "Ohio State",
+          "St. John's",
+          "Kansas",
+          "Louisville",
+          "Michigan State",
+          "UCLA",
+          "UConn"
+        ],
+        "2": [
+          "Duke",
+          "St. John's",
+          "Michigan State",
+          "UConn"
+        ],
+        "3": [
+          "Duke",
+          "Michigan State"
+        ],
+        "4": [
+          "Duke"
+        ]
+      },
+      "South": {
+        "1": [
+          "Florida",
+          "Iowa",
+          "Vanderbilt",
+          "Nebraska",
+          "North Carolina",
+          "Illinois",
+          "St. Mary's",
+          "Houston"
+        ],
+        "2": [
+          "Florida",
+          "Vanderbilt",
+          "Illinois",
+          "Houston"
+        ],
+        "3": [
+          "Florida",
+          "Illinois"
+        ],
+        "4": [
+          "Illinois"
+        ]
+      },
+      "West": {
+        "1": [
+          "Arizona",
+          "Utah State",
+          "Wisconsin",
+          "Arkansas",
+          "BYU",
+          "Gonzaga",
+          "Miami",
+          "Purdue"
+        ],
+        "2": [
+          "Arizona",
+          "Arkansas",
+          "Gonzaga",
+          "Purdue"
+        ],
+        "3": [
+          "Arizona",
+          "Purdue"
+        ],
+        "4": [
+          "Arizona"
+        ]
+      },
+      "Midwest": {
+        "1": [
+          "Michigan",
+          "Georgia",
+          "Texas Tech",
+          "Alabama",
+          "Tennessee",
+          "Virginia",
+          "Kentucky",
+          "Iowa State"
+        ],
+        "2": [
+          "Michigan",
+          "Texas Tech",
+          "Tennessee",
+          "Iowa State"
+        ],
+        "3": [
+          "Michigan",
+          "Iowa State"
+        ],
+        "4": [
+          "Michigan"
+        ]
+      }
+    },
+    "picks": [
+      {
+        "name": "Duke",
+        "seed": 1
+      },
+      {
+        "name": "Illinois",
+        "seed": 3
+      },
+      {
+        "name": "Arizona",
+        "seed": 1
+      },
+      {
+        "name": "Michigan",
+        "seed": 1
+      }
+    ],
+    "expected_points": 1114.6030799999996,
+    "final_four": [
+      "Duke",
+      "Illinois",
+      "Arizona",
+      "Michigan"
+    ],
+    "finalist_1": "Duke",
+    "finalist_2": "Michigan",
+    "champion": "Duke"
+  },
+  "bracket_b": {
+    "label": "BRACKET B (Contrarian Upside)",
+    "rounds": {
+      "East": {
+        "1": [
+          "Duke",
+          "Ohio State",
+          "St. John's",
+          "Kansas",
+          "Louisville",
+          "Michigan State",
+          "UCLA",
+          "UConn"
+        ],
+        "2": [
+          "Duke",
+          "St. John's",
+          "Michigan State",
+          "UConn"
+        ],
+        "3": [
+          "Duke",
+          "Michigan State"
+        ],
+        "4": [
+          "Duke"
+        ]
+      },
+      "South": {
+        "1": [
+          "Florida",
+          "Iowa",
+          "Vanderbilt",
+          "Nebraska",
+          "North Carolina",
+          "Illinois",
+          "St. Mary's",
+          "Houston"
+        ],
+        "2": [
+          "Florida",
+          "Vanderbilt",
+          "Illinois",
+          "Houston"
+        ],
+        "3": [
+          "Vanderbilt",
+          "Houston"
+        ],
+        "4": [
+          "Houston"
+        ]
+      },
+      "West": {
+        "1": [
+          "Arizona",
+          "Utah State",
+          "Wisconsin",
+          "Arkansas",
+          "BYU",
+          "Gonzaga",
+          "Miami",
+          "Purdue"
+        ],
+        "2": [
+          "Arizona",
+          "Arkansas",
+          "Gonzaga",
+          "Purdue"
+        ],
+        "3": [
+          "Arizona",
+          "Purdue"
+        ],
+        "4": [
+          "Purdue"
+        ]
+      },
+      "Midwest": {
+        "1": [
+          "Michigan",
+          "Georgia",
+          "Texas Tech",
+          "Alabama",
+          "Tennessee",
+          "Virginia",
+          "Kentucky",
+          "Iowa State"
+        ],
+        "2": [
+          "Michigan",
+          "Texas Tech",
+          "Tennessee",
+          "Iowa State"
+        ],
+        "3": [
+          "Michigan",
+          "Iowa State"
+        ],
+        "4": [
+          "Michigan"
+        ]
+      }
+    },
+    "picks": [
+      {
+        "name": "Duke",
+        "seed": 1
+      },
+      {
+        "name": "Houston",
+        "seed": 2
+      },
+      {
+        "name": "Purdue",
+        "seed": 2
+      },
+      {
+        "name": "Michigan",
+        "seed": 1
+      }
+    ],
+    "expected_points": 1067.6300399999998,
+    "final_four": [
+      "Duke",
+      "Houston",
+      "Purdue",
+      "Michigan"
+    ],
+    "finalist_1": "Duke",
+    "finalist_2": "Michigan",
+    "champion": "Michigan"
+  }
+}

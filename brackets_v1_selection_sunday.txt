@@ -1,0 +1,66 @@
+
+============================================================
+  BRACKET A (Model Favorite)
+============================================================
+
+  --- East Region ---
+    R64: Duke, Ohio State, St. John's, Kansas, Louisville, Michigan State, UCLA, UConn
+    R32: Duke, St. John's, Michigan State, UConn
+    S16: Duke, Michigan State
+    E8: Duke
+
+  --- South Region ---
+    R64: Florida, Iowa, Vanderbilt, Nebraska, North Carolina, Illinois, St. Mary's, Houston
+    R32: Florida, Vanderbilt, Illinois, Houston
+    S16: Florida, Illinois
+    E8: Illinois
+
+  --- West Region ---
+    R64: Arizona, Utah State, Wisconsin, Arkansas, BYU, Gonzaga, Miami, Purdue
+    R32: Arizona, Arkansas, Gonzaga, Purdue
+    S16: Arizona, Purdue
+    E8: Arizona
+
+  --- Midwest Region ---
+    R64: Michigan, Georgia, Texas Tech, Alabama, Tennessee, Virginia, Kentucky, Iowa State
+    R32: Michigan, Texas Tech, Tennessee, Iowa State
+    S16: Michigan, Iowa State
+    E8: Michigan
+
+  Final Four: Duke, Illinois, Arizona, Michigan
+  Champion: Duke
+  Expected Points: 1113.6
+
+
+============================================================
+  BRACKET B (Contrarian Upside)
+============================================================
+
+  --- East Region ---
+    R64: Duke, Ohio State, St. John's, Kansas, Louisville, Michigan State, UCLA, UConn
+    R32: Duke, St. John's, Michigan State, UConn
+    S16: Duke, Michigan State
+    E8: Duke
+
+  --- South Region ---
+    R64: Florida, Iowa, Vanderbilt, Nebraska, North Carolina, Illinois, St. Mary's, Houston
+    R32: Florida, Vanderbilt, Illinois, Houston
+    S16: Vanderbilt, Houston
+    E8: Houston
+
+  --- West Region ---
+    R64: Arizona, Utah State, Wisconsin, Arkansas, BYU, Gonzaga, Miami, Purdue
+    R32: Arizona, Arkansas, Gonzaga, Purdue
+    S16: Arizona, Purdue
+    E8: Purdue
+
+  --- Midwest Region ---
+    R64: Michigan, Georgia, Texas Tech, Alabama, Tennessee, Virginia, Kentucky, Iowa State
+    R32: Michigan, Texas Tech, Tennessee, Iowa State
+    S16: Michigan, Iowa State
+    E8: Michigan
+
+  Final Four: Duke, Houston, Purdue, Michigan
+  Champion: Michigan
+  Expected Points: 1066.8
+

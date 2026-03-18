@@ -1,0 +1,172 @@
+{
+  "1_original_50": {
+    "label": "Original (50-person pool)",
+    "pool_size": 50,
+    "bracket_a_champion": "Duke",
+    "bracket_a_ff": [
+      "Duke",
+      "Illinois",
+      "Arizona",
+      "Michigan"
+    ],
+    "bracket_a_expected_pts": 1112.6019000000001,
+    "bracket_b_champion": "Michigan",
+    "bracket_b_ff": [
+      "Duke",
+      "Houston",
+      "Purdue",
+      "Michigan"
+    ],
+    "bracket_b_expected_pts": 1066.0907000000002,
+    "results": {
+      "a_win_pct": 0.1926,
+      "b_win_pct": 0.1199,
+      "either_win_pct": 0.3079,
+      "a_top3_pct": 0.38,
+      "b_top3_pct": 0.2656,
+      "either_top3_pct": 0.5663,
+      "avg_position_a": 8.0918,
+      "avg_position_b": 11.1366,
+      "avg_best_position": 5.0552,
+      "median_best_position": 3.0,
+      "expected_payout": 0.6456,
+      "n_simulations": 10000
+    }
+  },
+  "2_contrarian": {
+    "label": "Most Contrarian",
+    "pool_size": 50,
+    "bracket_a_champion": "Duke",
+    "bracket_a_ff": [
+      "Duke",
+      "Illinois",
+      "Arizona",
+      "Michigan"
+    ],
+    "bracket_a_expected_pts": 10979364.221900001,
+    "bracket_b_champion": "Illinois",
+    "bracket_b_ff": [
+      "Duke",
+      "Illinois",
+      "Purdue",
+      "Michigan"
+    ],
+    "bracket_b_expected_pts": 9406848.6267,
+    "results": {
+      "a_win_pct": 0.1696,
+      "b_win_pct": 0.046,
+      "either_win_pct": 0.2152,
+      "a_top3_pct": 0.3687,
+      "b_top3_pct": 0.1583,
+      "either_top3_pct": 0.4372,
+      "avg_position_a": 8.6696,
+      "avg_position_b": 12.8119,
+      "avg_best_position": 6.6944,
+      "median_best_position": 4.0,
+      "expected_payout": 0.527,
+      "n_simulations": 10000
+    }
+  },
+  "3_pool_30": {
+    "label": "30-Person Pool",
+    "pool_size": 30,
+    "bracket_a_champion": "Duke",
+    "bracket_a_ff": [
+      "Duke",
+      "Illinois",
+      "Arizona",
+      "Michigan"
+    ],
+    "bracket_a_expected_pts": 22306192.601899996,
+    "bracket_b_champion": "Michigan",
+    "bracket_b_ff": [
+      "Duke",
+      "Houston",
+      "Purdue",
+      "Michigan"
+    ],
+    "bracket_b_expected_pts": 21334186.090699997,
+    "results": {
+      "a_win_pct": 0.1897,
+      "b_win_pct": 0.1158,
+      "either_win_pct": 0.3012,
+      "a_top3_pct": 0.3832,
+      "b_top3_pct": 0.2626,
+      "either_top3_pct": 0.5691,
+      "avg_position_a": 8.1017,
+      "avg_position_b": 11.2419,
+      "avg_best_position": 5.0423,
+      "median_best_position": 3.0,
+      "expected_payout": 0.6458,
+      "n_simulations": 10000
+    }
+  },
+  "4_pool_40": {
+    "label": "40-Person Pool",
+    "pool_size": 40,
+    "bracket_a_champion": "Duke",
+    "bracket_a_ff": [
+      "Duke",
+      "Illinois",
+      "Arizona",
+      "Michigan"
+    ],
+    "bracket_a_expected_pts": 33471502.601900004,
+    "bracket_b_champion": "Michigan",
+    "bracket_b_ff": [
+      "Duke",
+      "Houston",
+      "Purdue",
+      "Michigan"
+    ],
+    "bracket_b_expected_pts": 32004536.0907,
+    "results": {
+      "a_win_pct": 0.1818,
+      "b_win_pct": 0.1189,
+      "either_win_pct": 0.2969,
+      "a_top3_pct": 0.3747,
+      "b_top3_pct": 0.2705,
+      "either_top3_pct": 0.5668,
+      "avg_position_a": 8.0556,
+      "avg_position_b": 11.0925,
+      "avg_best_position": 5.0805,
+      "median_best_position": 3.0,
+      "expected_payout": 0.6452,
+      "n_simulations": 10000
+    }
+  },
+  "5_pool_50_v2": {
+    "label": "50-Person Pool (v2)",
+    "pool_size": 50,
+    "bracket_a_champion": "Duke",
+    "bracket_a_ff": [
+      "Duke",
+      "Illinois",
+      "Arizona",
+      "Michigan"
+    ],
+    "bracket_a_expected_pts": 44633752.601900004,
+    "bracket_b_champion": "Michigan",
+    "bracket_b_ff": [
+      "Duke",
+      "Houston",
+      "Purdue",
+      "Michigan"
+    ],
+    "bracket_b_expected_pts": 42704226.0907,
+    "results": {
+      "a_win_pct": 0.1844,
+      "b_win_pct": 0.114,
+      "either_win_pct": 0.2954,
+      "a_top3_pct": 0.3719,
+      "b_top3_pct": 0.2612,
+      "either_top3_pct": 0.5609,
+      "avg_position_a": 8.156,
+      "avg_position_b": 11.2474,
+      "avg_best_position": 5.1609,
+      "median_best_position": 3.0,
+      "expected_payout": 0.6331,
+      "n_simulations": 10000
+    }
+  }
+}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NCAA Bracket Optimizer 2026 — 5 Scenarios</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0e1a; color: #e0e0e0; }
+  .header { text-align: center; padding: 20px 16px 8px; }
+  .header h1 { font-size: 26px; font-weight: 800; background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .header .sub { color: #9ca3af; font-size: 12px; margin-top: 4px; }
+  .tabs { display: flex; justify-content: center; gap: 6px; padding: 12px 8px; flex-wrap: wrap; }
+  .tab { padding: 8px 16px; border-radius: 8px; font-weight: 700; font-size: 12px; cursor: pointer; border: 2px solid #374151; color: #9ca3af; background: #111827; transition: all 0.2s; white-space: nowrap; }
+  .tab:hover { border-color: #6b7280; color: #e0e0e0; }
+  .tab.active { border-color: #3b82f6; color: #fff; background: #1e3a5f; box-shadow: 0 0 12px rgba(59,130,246,0.3); }
+  .tab.s2.active { border-color: #ef4444; background: #3b1111; box-shadow: 0 0 12px rgba(239,68,68,0.3); }
+  .tab.s3.active { border-color: #10b981; background: #0f3d2e; box-shadow: 0 0 12px rgba(16,185,129,0.3); }
+  .tab.s4.active { border-color: #f59e0b; background: #3d2f0f; box-shadow: 0 0 12px rgba(245,158,11,0.3); }
+  .tab.s5.active { border-color: #8b5cf6; background: #2d1f4e; box-shadow: 0 0 12px rgba(139,92,246,0.3); }
+  .stats-bar { display: flex; justify-content: center; gap: 20px; padding: 12px 16px; background: #111827; border-radius: 8px; margin: 4px 16px 8px; flex-wrap: wrap; }
+  .stat { text-align: center; min-width: 80px; }
+  .stat .val { font-size: 18px; font-weight: 800; color: #60a5fa; }
+  .stat .label { font-size: 9px; color: #6b7280; text-transform: uppercase; letter-spacing: 1px; }
+  .stat.gold .val { color: #fbbf24; }
+  .comparison { margin: 12px 16px; overflow-x: auto; }
+  .comparison table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 700px; }
+  .comparison th { background: #1f2937; color: #9ca3af; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; padding: 8px 12px; text-align: left; }
+  .comparison td { padding: 8px 12px; border-bottom: 1px solid #1f2937; }
+  .comparison tr.active-row { background: rgba(59,130,246,0.1); }
+  .comparison .scenario-name { font-weight: 700; }
+  .comparison .hl { color: #4ade80; font-weight: 700; }
+  .bracket-section { margin: 12px 16px; }
+  .bracket-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .bracket-pair { grid-template-columns: 1fr; } }
+  .bracket-card { background: #111827; border-radius: 12px; padding: 16px; border: 1px solid #1f2937; }
+  .bracket-card h3 { font-size: 14px; font-weight: 800; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .badge { font-size: 10px; padding: 2px 8px; border-radius: 4px; font-weight: 700; }
+  .badge-a { background: rgba(59,130,246,0.2); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); }
+  .badge-b { background: rgba(168,85,247,0.2); color: #c084fc; border: 1px solid rgba(168,85,247,0.3); }
+  .region-block { margin-bottom: 10px; }
+  .region-block .rn { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 3px; }
+  .round-row { display: flex; gap: 3px; margin-bottom: 2px; align-items: center; flex-wrap: wrap; }
+  .round-label { font-size: 10px; color: #4b5563; width: 28px; flex-shrink: 0; font-weight: 700; }
+  .tp { display: inline-flex; align-items: center; padding: 2px 7px; border-radius: 4px; font-size: 11px; background: rgba(255,255,255,0.04); margin: 1px; }
+  .tp .s { font-weight: 800; color: #6b7280; margin-right: 3px; font-size: 10px; }
+  .tp .n { font-weight: 600; }
+  .tp.w { background: rgba(34,197,94,0.1); }
+  .tp.w .n { color: #4ade80; }
+  .tp.cp { background: linear-gradient(90deg, rgba(250,204,21,0.15), rgba(250,204,21,0.05)); border: 1px solid rgba(250,204,21,0.3); }
+  .tp.cp .n { color: #fbbf24; font-weight: 800; }
+  .tp.diff { border: 1px dashed rgba(239,68,68,0.5); }
+  .ff-section { background: #0d1117; border-radius: 8px; padding: 12px; margin-top: 8px; text-align: center; }
+  .ff-label { font-size: 10px; font-weight: 800; color: #6b7280; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; }
+  .ff-teams { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+  .ff-t { padding: 4px 12px; border-radius: 6px; font-weight: 700; font-size: 13px; background: rgba(96,165,250,0.1); border: 1px solid rgba(96,165,250,0.2); }
+  .ff-t.ch { background: linear-gradient(135deg, rgba(250,204,21,0.2), rgba(250,204,21,0.05)); border: 2px solid rgba(250,204,21,0.5); color: #fbbf24; font-size: 15px; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>NCAA Bracket Optimizer 2026</h1>
+  <div class="sub">500K Sims | Sports Reference + Polymarket + Historical Calibration | 5 Scenarios</div>
+</div>
+<div class="tabs" id="tabs"></div>
+<div id="stats-container"></div>
+<div class="comparison">
+  <table><thead><tr>
+    <th>Scenario</th><th>Pool</th><th>A Champ</th><th>B Champ</th>
+    <th>Win Pool</th><th>Top 3</th><th>Win Edge</th><th>T3 Edge</th><th>Avg Best</th><th>Median</th>
+  </tr></thead><tbody id="comp-body"></tbody></table>
+</div>
+<div class="bracket-section" id="bracket-display"></div>
+<script>
+const F={East:{"1":"Duke","16":"Siena","8":"Ohio State","9":"TCU","5":"St. John's","12":"N. Iowa","4":"Kansas","13":"Cal Baptist","6":"Louisville","11":"S. Florida","3":"Michigan St.","14":"N. Dakota St.","7":"UCLA","10":"UCF","2":"UConn","15":"Furman"},South:{"1":"Florida","16":"Prairie View","8":"Clemson","9":"Iowa","5":"Vanderbilt","12":"McNeese","4":"Nebraska","13":"Troy","6":"North Carolina","11":"VCU","3":"Illinois","14":"Penn","7":"St. Mary's","10":"Texas A&M","2":"Houston","15":"Idaho"},West:{"1":"Arizona","16":"LIU","8":"Villanova","9":"Utah State","5":"Wisconsin","12":"High Point","4":"Arkansas","13":"Hawaii","6":"BYU","11":"Texas","3":"Gonzaga","14":"Kennesaw St.","7":"Miami","10":"Missouri","2":"Purdue","15":"Queens"},Midwest:{"1":"Michigan","16":"UMBC","8":"Georgia","9":"St. Louis","5":"Texas Tech","12":"Akron","4":"Alabama","13":"Hofstra","6":"Tennessee","11":"SMU","3":"Virginia","14":"Wright State","7":"Kentucky","10":"Santa Clara","2":"Iowa State","15":"Tennessee St."}};
+const RC={East:'#60a5fa',South:'#34d399',West:'#fb923c',Midwest:'#f472b6'};
+
+function mkR(r64,r32,s16,e8){return{1:r64,2:r32,3:s16,4:e8};}
+
+const baseA={
+  East:mkR(['Duke','Ohio State',"St. John's",'Kansas','Louisville','Michigan State','UCLA','UConn'],['Duke',"St. John's",'Michigan State','UConn'],['Duke','Michigan State'],['Duke']),
+  South:mkR(['Florida','Iowa','Vanderbilt','Nebraska','North Carolina','Illinois',"St. Mary's",'Houston'],['Florida','Vanderbilt','Illinois','Houston'],['Florida','Illinois'],['Illinois']),
+  West:mkR(['Arizona','Utah State','Wisconsin','Arkansas','BYU','Gonzaga','Miami','Purdue'],['Arizona','Arkansas','Gonzaga','Purdue'],['Arizona','Purdue'],['Arizona']),
+  Midwest:mkR(['Michigan','Georgia','Texas Tech','Alabama','Tennessee','Virginia','Kentucky','Iowa State'],['Michigan','Texas Tech','Tennessee','Iowa State'],['Michigan','Iowa State'],['Michigan'])
+};
+
+const baseB_orig={
+  East:mkR(['Duke','Ohio State',"St. John's",'Kansas','Louisville','Michigan State','UCLA','UConn'],['Duke',"St. John's",'Michigan State','UConn'],['Duke','Michigan State'],['Duke']),
+  South:mkR(['Florida','Iowa','Vanderbilt','Nebraska','North Carolina','Illinois',"St. Mary's",'Houston'],['Florida','Vanderbilt','Illinois','Houston'],['Vanderbilt','Houston'],['Houston']),
+  West:mkR(['Arizona','Utah State','Wisconsin','Arkansas','BYU','Gonzaga','Miami','Purdue'],['Arizona','Arkansas','Gonzaga','Purdue'],['Arizona','Purdue'],['Purdue']),
+  Midwest:mkR(['Michigan','Georgia','Texas Tech','Alabama','Tennessee','Virginia','Kentucky','Iowa State'],['Michigan','Texas Tech','Tennessee','Iowa State'],['Michigan','Iowa State'],['Michigan'])
+};
+
+// Contrarian A: S16 has Vanderbilt instead of Florida in South
+const contrA=JSON.parse(JSON.stringify(baseA));
+contrA.South[3]=['Vanderbilt','Illinois'];
+
+// Contrarian B: Illinois champion path
+const contrB={
+  East:mkR(['Duke','Ohio State',"St. John's",'Kansas','Louisville','Michigan State','UCLA','UConn'],['Duke',"St. John's",'Michigan State','UConn'],['Duke','Michigan State'],['Duke']),
+  South:mkR(['Florida','Iowa','Vanderbilt','Nebraska','North Carolina','Illinois',"St. Mary's",'Houston'],['Florida','Vanderbilt','Illinois','Houston'],['Florida','Illinois'],['Illinois']),
+  West:mkR(['Arizona','Utah State','Wisconsin','Arkansas','BYU','Gonzaga','Miami','Purdue'],['Arizona','Arkansas','Gonzaga','Purdue'],['Arizona','Purdue'],['Purdue']),
+  Midwest:mkR(['Michigan','Georgia','Texas Tech','Alabama','Tennessee','Virginia','Kentucky','Iowa State'],['Michigan','Texas Tech','Tennessee','Iowa State'],['Michigan','Iowa State'],['Michigan'])
+};
+
+const scenarios=[
+  {id:'s1',label:'Original (50p)',tc:'',pool:50,
+    a:{champ:'Duke',ff:['Duke','Illinois','Arizona','Michigan'],rounds:baseA,exp:1113},
+    b:{champ:'Michigan',ff:['Duke','Houston','Purdue','Michigan'],rounds:baseB_orig,exp:1066},
+    r:{win:.308,top3:.566,we:15.4,te:9.4,ab:5.1,med:3}},
+  {id:'s2',label:'Most Contrarian',tc:'s2',pool:50,
+    a:{champ:'Duke',ff:['Duke','Illinois','Arizona','Michigan'],rounds:contrA,exp:1079},
+    b:{champ:'Illinois',ff:['Duke','Illinois','Purdue','Michigan'],rounds:contrB,exp:941},
+    r:{win:.215,top3:.437,we:10.8,te:7.3,ab:6.7,med:4}},
+  {id:'s3',label:'30-Person Pool',tc:'s3',pool:30,
+    a:{champ:'Duke',ff:['Duke','Illinois','Arizona','Michigan'],rounds:baseA,exp:1113},
+    b:{champ:'Michigan',ff:['Duke','Houston','Purdue','Michigan'],rounds:baseB_orig,exp:1066},
+    r:{win:.301,top3:.569,we:9.0,te:5.7,ab:5.0,med:3}},
+  {id:'s4',label:'40-Person Pool',tc:'s4',pool:40,
+    a:{champ:'Duke',ff:['Duke','Illinois','Arizona','Michigan'],rounds:baseA,exp:1113},
+    b:{champ:'Michigan',ff:['Duke','Houston','Purdue','Michigan'],rounds:baseB_orig,exp:1066},
+    r:{win:.297,top3:.567,we:11.9,te:7.6,ab:5.1,med:3}},
+  {id:'s5',label:'50-Person v2',tc:'s5',pool:50,
+    a:{champ:'Duke',ff:['Duke','Illinois','Arizona','Michigan'],rounds:baseA,exp:1113},
+    b:{champ:'Michigan',ff:['Duke','Houston','Purdue','Michigan'],rounds:baseB_orig,exp:1066},
+    r:{win:.295,top3:.561,we:14.8,te:9.3,ab:5.2,med:3}}
+];
+
+let active=0;
+
+function init(){
+  const tabs=document.getElementById('tabs');
+  scenarios.forEach((sc,i)=>{
+    const t=document.createElement('div');
+    t.className=`tab ${sc.tc}${i===0?' active':''}`;
+    t.textContent=sc.label;
+    t.onclick=()=>sel(i);
+    tabs.appendChild(t);
+  });
+  const tbody=document.getElementById('comp-body');
+  scenarios.forEach((sc,i)=>{
+    const r=sc.r;
+    const tr=document.createElement('tr');
+    tr.id='cr'+i;
+    if(i===0)tr.className='active-row';
+    tr.innerHTML=`<td class="scenario-name">${sc.label}</td><td>${sc.pool}</td><td>${sc.a.champ}</td><td>${sc.b.champ}</td><td class="hl">${(r.win*100).toFixed(1)}%</td><td class="hl">${(r.top3*100).toFixed(1)}%</td><td>${r.we.toFixed(1)}x</td><td>${r.te.toFixed(1)}x</td><td>${r.ab.toFixed(1)}</td><td>${r.med}</td>`;
+    tr.style.cursor='pointer';
+    tr.onclick=()=>sel(i);
+    tbody.appendChild(tr);
+  });
+  render(0);
+}
+
+function sel(i){
+  active=i;
+  document.querySelectorAll('.tab').forEach((t,j)=>t.classList.toggle('active',j===i));
+  document.querySelectorAll('#comp-body tr').forEach((r,j)=>r.className=j===i?'active-row':'');
+  render(i);
+}
+
+function render(i){
+  const sc=scenarios[i],r=sc.r;
+  document.getElementById('stats-container').innerHTML=`<div class="stats-bar">
+    <div class="stat gold"><div class="val">${sc.a.champ} / ${sc.b.champ}</div><div class="label">Champions (A / B)</div></div>
+    <div class="stat"><div class="val">${(r.win*100).toFixed(1)}%</div><div class="label">Win Pool</div></div>
+    <div class="stat"><div class="val">${(r.top3*100).toFixed(1)}%</div><div class="label">Top 3</div></div>
+    <div class="stat"><div class="val">${r.we.toFixed(1)}x</div><div class="label">Win Edge</div></div>
+    <div class="stat"><div class="val">${r.te.toFixed(1)}x</div><div class="label">Top3 Edge</div></div>
+    <div class="stat"><div class="val">${sc.pool}</div><div class="label">Pool Size</div></div>
+  </div>`;
+  document.getElementById('bracket-display').innerHTML=`<div class="bracket-pair">${card(sc.a,'A',sc.b)}${card(sc.b,'B',sc.a)}</div>`;
+}
+
+function card(br,ltr,other){
+  const bc=ltr==='A'?'badge-a':'badge-b';
+  const lb=ltr==='A'?'Model Favorite':'Contrarian Upside';
+  let h=`<div class="bracket-card"><h3><span class="badge ${bc}">BRACKET ${ltr}</span> ${lb}</h3>`;
+  for(const reg of['East','South','West','Midwest']){
+    h+=`<div class="region-block"><div class="rn" style="color:${RC[reg]}">${reg}</div>`;
+    const rn={1:'R64',2:'R32',3:'S16',4:'E8'};
+    for(let rd=1;rd<=4;rd++){
+      const p=br.rounds[reg][rd]||[];
+      const op=(other.rounds[reg]||{})[rd]||[];
+      h+=`<div class="round-row"><span class="round-label">${rn[rd]}</span>`;
+      p.forEach((t,j)=>{
+        const sd=findSeed(reg,t);
+        const isCp=t===br.champ;
+        const isDf=j<op.length&&t!==op[j];
+        let c='tp w';if(isCp)c='tp cp';if(isDf)c+=' diff';
+        h+=`<span class="${c}"><span class="s">${sd}</span><span class="n">${t}</span></span>`;
+      });
+      h+='</div>';
+    }
+    h+='</div>';
+  }
+  h+=`<div class="ff-section"><div class="ff-label">Final Four</div><div class="ff-teams">`;
+  br.ff.forEach(t=>{h+=`<span class="ff-t${t===br.champ?' ch':''}">${t}</span>`;});
+  h+=`</div><div style="font-size:20px">&#127942;</div><div style="font-size:18px;font-weight:900;color:#fbbf24">${br.champ}</div><div style="font-size:10px;color:#9ca3af;margin-top:2px">Champion | ~${br.exp} Expected Pts</div></div></div>`;
+  return h;
+}
+
+function findSeed(reg,name){
+  for(const[s,n]of Object.entries(F[reg]||{})){if(n===name||name.includes(n)||n.includes(name))return s;}
+  for(const r of Object.keys(F))for(const[s,n]of Object.entries(F[r]))if(n===name)return s;
+  return'?';
+}
+
+init();
+</script>
+</body>
+</html>

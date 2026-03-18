@@ -1,0 +1,14 @@
+{
+  "a_win_pct": 0.1846,
+  "b_win_pct": 0.1187,
+  "either_win_pct": 0.2996,
+  "a_top3_pct": 0.3748,
+  "b_top3_pct": 0.2682,
+  "either_top3_pct": 0.5701,
+  "avg_position_a": 8.1793,
+  "avg_position_b": 11.1017,
+  "avg_best_position": 5.0745,
+  "median_best_position": 3.0,
+  "expected_payout": 0.643,
+  "n_simulations": 10000
+}
